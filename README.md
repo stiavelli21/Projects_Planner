@@ -112,6 +112,6 @@ I contributi sono benvenuti! Se desideri proporre miglioramenti o nuove funziona
 
 ---
 
-## 📄 Licenza
+## Licenza
 
 Questo progetto è distribuito con licenza **MIT**. Sentiti libero di utilizzarlo e modificarlo per le tue esigenze di sviluppo e apprendimento.
