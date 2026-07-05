@@ -1,4 +1,4 @@
-# 📋 Projects Planner
+# Projects Planner
 
 <div align="center">
 
@@ -15,22 +15,22 @@
 
 ---
 
-## 🌟 Panoramica
+## Panoramica
 
 **Projects Planner** è un'applicazione multipiattaforma sviluppata in **Flutter** e **Dart** che permette di organizzare il proprio lavoro in modo semplice ed elegante. Progettata con un approccio **offline-first**, l'app archivia tutti i dati localmente sul dispositivo garantendo privacy, velocità e disponibilità immediata anche senza connessione Internet.
 
-## ✨ Caratteristiche Principali
+## Caratteristiche Principali
 
-- 🚀 **Gestione Progetti Completa**: Crea, modifica, visualizza e organizza i tuoi progetti. Ogni progetto dispone di un titolo, una descrizione dettagliata e un badge a colori personalizzabile per una rapida identificazione visiva.
-- 📝 **Organizzazione Note e Attività**: Associa note e task specifici a ciascun progetto. Tieni traccia dei dettagli operativi con timestamp di creazione e aggiornamento automatici.
-- 🎨 **Interfaccia Utente Elegante**: Esperienza visiva di altissimo livello basata su **Material Design 3**, arricchita dalla tipografia moderna di **Google Fonts** e icone chiare e intuitive.
-- 💾 **Persistenza Locale e Sicura**: Archiviazione dati affidabile e reattiva gestita tramite **SQLite** (`sqflite`), per massimizzare le performance senza dipendere da server esterni.
-- 📱🎨 **Selettore di Colori e Stati Vuoti**: Esperienza utente curata nei minimi dettagli, con un color picker dedicato (`color_picker.dart`) e schermate di empty state animate e accattivanti (`empty_state.dart`).
-- 🌐 **Supporto Multipiattaforma**: Sviluppata per funzionare uniformemente su Android, iOS, Windows, macOS, Linux e Web.
+-  **Gestione Progetti Completa**: Crea, modifica, visualizza e organizza i tuoi progetti. Ogni progetto dispone di un titolo, una descrizione dettagliata e un badge a colori personalizzabile per una rapida identificazione visiva.
+-  **Organizzazione Note e Attività**: Associa note e task specifici a ciascun progetto. Tieni traccia dei dettagli operativi con timestamp di creazione e aggiornamento automatici.
+-  **Interfaccia Utente Elegante**: Esperienza visiva di altissimo livello basata su **Material Design 3**, arricchita dalla tipografia moderna di **Google Fonts** e icone chiare e intuitive.
+-  **Persistenza Locale e Sicura**: Archiviazione dati affidabile e reattiva gestita tramite **SQLite** (`sqflite`), per massimizzare le performance senza dipendere da server esterni.
+-  **Selettore di Colori e Stati Vuoti**: Esperienza utente curata nei minimi dettagli, con un color picker dedicato (`color_picker.dart`) e schermate di empty state animate e accattivanti (`empty_state.dart`).
+-  **Supporto Multipiattaforma**: Sviluppata per funzionare uniformemente su Android, iOS, Windows, macOS, Linux e Web.
 
 ---
 
-## 🛠️ Stack Tecnologico
+## Stack Tecnologico
 
 | Componente | Tecnologia | Descrizione |
 | :--- | :--- | :--- |
@@ -42,7 +42,7 @@
 
 ---
 
-## 📂 Struttura del Progetto
+## Struttura del Progetto
 
 Il codice sorgente è strutturato seguendo una pulita separazione delle responsabilità (Clean Architecture):
 
@@ -70,7 +70,7 @@ lib/
 
 ---
 
-## 🚀 Per Iniziare
+## Per Iniziare
 
 ### Prerequisiti
 
@@ -101,7 +101,7 @@ Assicurati di avere installato sul tuo ambiente di sviluppo:
 
 ---
 
-## 🤝 Contributi
+## Contributi
 
 I contributi sono benvenuti! Se desideri proporre miglioramenti o nuove funzionalità:
 1. Fai un **Fork** del repository.
