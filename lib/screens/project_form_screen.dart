@@ -186,77 +186,7 @@ class _ProjectFormScreenState extends State<ProjectFormScreen> {
                 },
               ),
 
-              const SizedBox(height: 28),
 
-              // ── Preview ──
-              Text(
-                'Anteprima',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: const Color(0xFF636E72),
-                    ),
-              ),
-              const SizedBox(height: 12),
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeOutCubic,
-                width: double.infinity,
-                padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      AppTheme.getProjectColorLight(_selectedColor),
-                      AppTheme.getProjectColorLight(_selectedColor)
-                          .withValues(alpha: 0.5),
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: color.withValues(alpha: 0.2),
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 14,
-                      height: 14,
-                      decoration: BoxDecoration(
-                        color: color,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      _titleController.text.isEmpty
-                          ? 'Titolo del progetto'
-                          : _titleController.text,
-                      style:
-                          Theme.of(context).textTheme.titleMedium?.copyWith(
-                                fontWeight: FontWeight.w800,
-                                color: _titleController.text.isEmpty
-                                    ? const Color(0xFFB2BEC3)
-                                    : const Color(0xFF2D3436),
-                              ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      _descController.text.isEmpty
-                          ? 'Descrizione...'
-                          : _descController.text,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: _descController.text.isEmpty
-                                ? const Color(0xFFB2BEC3)
-                                : const Color(0xFF636E72),
-                          ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
         ),

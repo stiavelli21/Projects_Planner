@@ -34,21 +34,6 @@ class ColorPickerWidget extends StatelessWidget {
                       width: 3,
                     )
                   : null,
-              boxShadow: selectedIndex == index
-                  ? [
-                      BoxShadow(
-                        color: AppTheme.projectColors[index].withValues(alpha: 0.5),
-                        blurRadius: 12,
-                        spreadRadius: 2,
-                      ),
-                    ]
-                  : [
-                      BoxShadow(
-                        color: AppTheme.projectColors[index].withValues(alpha: 0.3),
-                        blurRadius: 6,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
             ),
             child: selectedIndex == index
                 ? const Icon(

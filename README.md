@@ -1,17 +1,14 @@
 # Projects Planner
 
-<div align="center">
+**Projects Planner** è un'applicazione multipiattaforma sviluppata in Flutter ideata per organizzare il tuo lavoro e i tuoi progetti in modo semplice ed elegante. Risolve il problema della dispersione delle informazioni, permettendoti di raccogliere note, task e dettagli operativi associati a ogni progetto in un unico posto. Con un approccio *offline-first*, garantisce privacy e velocità, permettendoti di accedere ai tuoi dati ovunque, anche senza connessione internet.
 
-![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
-![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
-![Material Design](https://img.shields.io/badge/Material%20Design%203-757575?style=for-the-badge&logo=material-design&logoColor=white)
+## Stack Necessario
 
-**Un'applicazione Flutter moderna, intuitiva e performante per la gestione organizzata di progetti e note personali.**
-
-[Caratteristiche](#-caratteristiche-principali) • [Architettura](#-architettura-del-progetto) • [Installazione](#-per-iniziare) • [Tecnologie](#%EF%B8%8F-stack-tecnologico)
-
-</div>
+Il progetto adotta una Clean Architecture e si basa sui seguenti strumenti chiave:
+- **Framework:** Flutter (Dart)
+- **Database:** SQLite (`sqflite`) per una persistenza dei dati veloce e interamente locale
+- **File System:** `path_provider` per gestire l'accesso ai percorsi di sistema nei vari OS
+- **UI & Stile:** Material Design 3, `google_fonts` e icone native per un'esperienza visiva di alto livello
 
 ---
 
@@ -94,7 +91,7 @@ Assicurati di avere installato sul tuo ambiente di sviluppo:
    ```
 
 3. **Esegui l'applicazione**:
-   Collega un dispositivo fisico o avvia un emulatore/simulatore, quindi esegui:
+   Connetti un dispositivo (fisico o emulatore) ed avvia l'app con:
    ```bash
    flutter run
    ```

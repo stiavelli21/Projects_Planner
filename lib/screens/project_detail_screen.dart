@@ -5,6 +5,7 @@ import '../models/project.dart';
 import '../models/note.dart';
 import '../theme/app_theme.dart';
 import '../widgets/note_tile.dart';
+import '../widgets/confirm_dialog.dart';
 import '../widgets/empty_state.dart';
 import 'note_editor_screen.dart';
 import 'project_form_screen.dart';
@@ -75,6 +76,7 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen>
           builder: (_) => NoteEditorScreen(
             note: note,
             accentColor: AppTheme.getProjectColor(_project.colorIndex),
+            isEditing: true,
           ),
         ),
       );
@@ -112,9 +114,7 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen>
   Future<void> _editProject() async {
     final result = await Navigator.push<bool>(
       context,
-      MaterialPageRoute(
-        builder: (_) => ProjectFormScreen(project: _project),
-      ),
+      MaterialPageRoute(builder: (_) => ProjectFormScreen(project: _project)),
     );
     if (result == true) {
       _loadData();
@@ -132,10 +132,12 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen>
       body: CustomScrollView(
         slivers: [
           // ── Header ──
-          SliverAppBar.medium(
-            backgroundColor: lightColor,
+          SliverAppBar(
+            centerTitle: true,
+            pinned: true,
+            backgroundColor: color,
             surfaceTintColor: Colors.transparent,
-            foregroundColor: const Color(0xFF2D3436),
+            foregroundColor: Colors.white,
             title: Hero(
               tag: 'project_${_project.id}',
               child: Material(
@@ -143,9 +145,9 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen>
                 child: Text(
                   _project.title,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w800,
-                        color: const Color(0xFF2D3436),
-                      ),
+                    fontWeight: FontWeight.w800,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -171,33 +173,12 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 10,
-                        height: 10,
-                        decoration: BoxDecoration(
-                          color: color,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Text(
-                        'Creato il ${dateFormat.format(_project.createdAt)}',
-                        style:
-                            Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: const Color(0xFFB2BEC3),
-                                ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
                   Text(
                     _project.description,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: const Color(0xFF636E72),
-                          height: 1.5,
-                        ),
+                      color: const Color(0xFF636E72),
+                      height: 1.5,
+                    ),
                   ),
                 ],
               ),
@@ -210,18 +191,13 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen>
               padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.sticky_note_2_outlined,
-                    size: 20,
-                    color: color,
-                  ),
+                  Icon(Icons.sticky_note_2_outlined, size: 20, color: color),
                   const SizedBox(width: 8),
                   Text(
                     'Note',
-                    style:
-                        Theme.of(context).textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w700,
-                            ),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   const SizedBox(width: 8),
                   Container(
@@ -265,37 +241,44 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen>
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(16, 4, 16, 100),
               sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final note = _notes[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Dismissible(
-                        key: ValueKey(note.id),
-                        direction: DismissDirection.endToStart,
-                        background: Container(
-                          alignment: Alignment.centerRight,
-                          padding: const EdgeInsets.only(right: 20),
-                          decoration: BoxDecoration(
-                            color: Colors.red.shade400,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: const Icon(
-                            Icons.delete_rounded,
-                            color: Colors.white,
-                          ),
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final note = _notes[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Dismissible(
+                      key: ValueKey(note.id),
+                      direction: DismissDirection.endToStart,
+                      background: Container(
+                        alignment: Alignment.centerRight,
+                        padding: const EdgeInsets.only(right: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.red.shade400,
+                          borderRadius: BorderRadius.circular(16),
                         ),
-                        onDismissed: (_) => _deleteNote(note),
-                        child: NoteTile(
-                          note: note,
-                          onTap: () => _openNote(note),
-                          accentColor: color,
+                        child: const Icon(
+                          Icons.delete_rounded,
+                          color: Colors.white,
                         ),
                       ),
-                    );
-                  },
-                  childCount: _notes.length,
-                ),
+                      confirmDismiss: (_) async {
+                        final confirmed = await showDialog<bool>(
+                          context: context,
+                          builder: (ctx) => const ConfirmDialog(
+                            title: 'Elimina nota',
+                            content: 'Sei sicuro di voler eliminare questa nota?',
+                          ),
+                        );
+                        return confirmed ?? false;
+                      },
+                      onDismissed: (_) => _deleteNote(note),
+                      child: NoteTile(
+                        note: note,
+                        onTap: () => _openNote(note),
+                        accentColor: color,
+                      ),
+                    ),
+                  );
+                }, childCount: _notes.length),
               ),
             ),
         ],

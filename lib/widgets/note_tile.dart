@@ -65,21 +65,6 @@ class NoteTile extends StatelessWidget {
                 ),
               ],
             ),
-            if (note.content.isNotEmpty) ...[
-              const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Text(
-                  note.content,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: const Color(0xFF636E72),
-                        height: 1.4,
-                      ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
           ],
         ),
       ),

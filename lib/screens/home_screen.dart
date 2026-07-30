@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../data/database_helper.dart';
 import '../models/project.dart';
 import '../widgets/project_card.dart';
+import '../widgets/confirm_dialog.dart';
 import '../widgets/empty_state.dart';
 import 'project_form_screen.dart';
 import 'project_detail_screen.dart';
@@ -49,9 +50,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Future<void> _createProject() async {
     final result = await Navigator.push<bool>(
       context,
-      MaterialPageRoute(
-        builder: (_) => const ProjectFormScreen(),
-      ),
+      MaterialPageRoute(builder: (_) => const ProjectFormScreen()),
     );
     if (result == true) {
       _loadProjects();
@@ -61,22 +60,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Future<void> _editProject(Project project) async {
     final result = await Navigator.push<bool>(
       context,
-      MaterialPageRoute(
-        builder: (_) => ProjectFormScreen(project: project),
-      ),
+      MaterialPageRoute(builder: (_) => ProjectFormScreen(project: project)),
     );
     if (result == true) {
       _loadProjects();
     }
   }
 
-
   Future<void> _openProject(Project project) async {
     await Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => ProjectDetailScreen(project: project),
-      ),
+      MaterialPageRoute(builder: (_) => ProjectDetailScreen(project: project)),
     );
     _loadProjects(); // Refresh note counts
   }
@@ -111,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                 ),
                 const SizedBox(width: 12),
-                const Text('Projects'),
+                const Text('I miei Progetti'),
               ],
             ),
           ),
@@ -133,17 +127,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           else
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 100),
-              sliver: SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 12,
-                  crossAxisSpacing: 12,
-                  childAspectRatio: 0.85,
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final project = _projects[index];
-                    return Dismissible(
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final project = _projects[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: Dismissible(
                       key: ValueKey(project.id),
                       direction: DismissDirection.endToStart,
                       background: Container(
@@ -161,24 +150,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       confirmDismiss: (_) async {
                         final confirmed = await showDialog<bool>(
                           context: context,
-                          builder: (ctx) => AlertDialog(
-                            title: const Text('Elimina progetto'),
-                            content: Text(
-                              'Vuoi eliminare "${project.title}" e tutte le sue note?',
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(ctx, false),
-                                child: const Text('Annulla'),
-                              ),
-                              TextButton(
-                                onPressed: () => Navigator.pop(ctx, true),
-                                style: TextButton.styleFrom(
-                                  foregroundColor: Colors.red,
-                                ),
-                                child: const Text('Elimina'),
-                              ),
-                            ],
+                          builder: (ctx) => ConfirmDialog(
+                            title: 'Elimina progetto',
+                            content: 'Vuoi eliminare "${project.title}" e tutte le sue note?',
                           ),
                         );
                         return confirmed ?? false;
@@ -192,10 +166,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         onTap: () => _openProject(project),
                         onLongPress: () => _editProject(project),
                       ),
-                    );
-                  },
-                  childCount: _projects.length,
-                ),
+                    ),
+                  );
+                }, childCount: _projects.length),
               ),
             ),
         ],
@@ -205,15 +178,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           parent: _fabController,
           curve: Curves.elasticOut,
         ),
-        child: FloatingActionButton.extended(
+        child: FloatingActionButton(
           onPressed: _createProject,
           backgroundColor: const Color(0xFFFF6B6B),
           foregroundColor: Colors.white,
-          icon: const Icon(Icons.add_rounded),
-          label: const Text(
-            'Nuovo progetto',
-            style: TextStyle(fontWeight: FontWeight.w700),
-          ),
+          child: const Icon(Icons.add_rounded),
         ),
       ),
     );

@@ -37,7 +37,7 @@ class AppTheme {
 
   // ── Theme ───────────────────────────────────────────────
   static ThemeData get lightTheme {
-    final baseTextTheme = GoogleFonts.nunitoTextTheme();
+    final baseTextTheme = GoogleFonts.poppinsTextTheme();
 
     return ThemeData(
       useMaterial3: true,
@@ -73,7 +73,7 @@ class AppTheme {
         centerTitle: false,
         elevation: 0,
         scrolledUnderElevation: 1,
-        titleTextStyle: GoogleFonts.nunito(
+        titleTextStyle: GoogleFonts.poppins(
           fontSize: 22,
           fontWeight: FontWeight.w800,
           color: const Color(0xFF2D3436),
@@ -115,7 +115,7 @@ class AppTheme {
           horizontal: 20,
           vertical: 16,
         ),
-        hintStyle: GoogleFonts.nunito(
+        hintStyle: GoogleFonts.poppins(
           color: const Color(0xFFB2BEC3),
           fontWeight: FontWeight.w500,
         ),
