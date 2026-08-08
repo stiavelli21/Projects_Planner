@@ -10,7 +10,12 @@ file by file.
 
 ## Folder structure
 project/
-  lib/            [Main source code: UI, models, data access, theme]
+  lib/            [Main source code]
+    data/         [Database configuration and SQLite helper classes]
+    models/       [Data models representing entities like Project and Note]
+    screens/      [UI screens representing full pages of the app]
+    theme/        [Global styling, colors, and typography configurations]
+    widgets/      [Reusable UI components used across multiple screens]
   test/           [Unit and widget tests]
   .agents/        # AI agent directives (this folder)
 

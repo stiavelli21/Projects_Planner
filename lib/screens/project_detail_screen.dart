@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
 import '../data/database_helper.dart';
 import '../models/project.dart';
 import '../models/note.dart';
@@ -124,10 +124,14 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen>
   @override
   Widget build(BuildContext context) {
     final color = AppTheme.getProjectColor(_project.colorIndex);
-    final lightColor = AppTheme.getProjectColorLight(_project.colorIndex);
-    final dateFormat = DateFormat('d MMMM yyyy');
 
-    return Scaffold(
+    return GestureDetector(
+      onHorizontalDragUpdate: (details) {
+        if (details.delta.dx > 15) {
+          Navigator.maybePop(context);
+        }
+      },
+      child: Scaffold(
       backgroundColor: const Color(0xFFFAFAFA),
       body: CustomScrollView(
         slivers: [
@@ -295,6 +299,6 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen>
           child: const Icon(Icons.add_rounded),
         ),
       ),
-    );
+    ));
   }
 }

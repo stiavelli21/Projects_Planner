@@ -87,27 +87,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             surfaceTintColor: Colors.transparent,
             floating: true,
             snap: true,
-            title: Row(
-              children: [
-                Container(
-                  width: 36,
-                  height: 36,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFFFF6B6B), Color(0xFFFFB347)],
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Icon(
-                    Icons.rocket_launch_rounded,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ),
-                const SizedBox(width: 12),
-                const Text('I miei Progetti'),
-              ],
-            ),
+            centerTitle: true,
+            title: const Text('I miei Progetti'),
           ),
 
           // ── Content ──

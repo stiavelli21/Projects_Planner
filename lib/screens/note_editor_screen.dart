@@ -237,7 +237,13 @@ class _NoteEditorScreenState extends State<NoteEditorScreen> {
           await _save();
         }
       },
-      child: Scaffold(
+      child: GestureDetector(
+        onHorizontalDragUpdate: (details) {
+          if (details.delta.dx > 15) {
+            Navigator.maybePop(context);
+          }
+        },
+        child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -430,6 +436,7 @@ class _NoteEditorScreenState extends State<NoteEditorScreen> {
                 foregroundColor: Colors.white,
                 child: const Icon(Icons.edit_rounded),
               ),
+      ),
       ),
     );
   }
